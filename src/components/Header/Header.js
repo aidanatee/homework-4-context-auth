@@ -20,6 +20,7 @@ class Header extends PureComponent {
           )
           }
     </AuthConsumer>
+
     );
   }
 }
