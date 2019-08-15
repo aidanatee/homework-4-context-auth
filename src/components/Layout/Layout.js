@@ -7,7 +7,7 @@ class Layout extends PureComponent {
    const { header: Header, footer: Footer, children } = this.props;
 
    return (
-     <t>
+     <div>
         { Header && <header className="header">
           <SectionTitle className="header__title section-title">Header</SectionTitle>
           <Header />
@@ -22,7 +22,7 @@ class Layout extends PureComponent {
           <Footer />
         </footer>
         }
-     </t>
+     </div>
 
 
    );
