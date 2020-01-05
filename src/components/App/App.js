@@ -10,23 +10,40 @@ class App extends PureComponent {
   render() {
     return (
       <AuthProvider>
-        <Layout header={Header} footer={Footer}>
+       <Layout header={Header} footer={Footer}>
           <AuthConsumer>
             {({ isAuthorized, authorize, authorizeError }) =>
-              isAuthorized ? (
-                <Congratulations />
-              ) : (
-                <LoginForm
-                  authorize={authorize}
-                  authorizeError={authorizeError}
-                />
-              )
-            }
+            isAuthorized ? (
+            <Congratulations />
+          ) : (
+          <LoginForm
+            authorize={authorize}
+            authorizeError={authorizeError}
+          />
+          )
+          }
           </AuthConsumer>
-        </Layout>
+       </Layout>
       </AuthProvider>
     );
   }
 }
 
 export default App;
+
+// <AuthProvider>
+// <Layout header={Header} footer={Footer}>
+//   <AuthConsumer>
+//     {({ isAuthorized, authorize, authorizeError }) =>
+//       isAuthorized ? (
+//         <Congratulations />
+//       ) : (
+//         <LoginForm
+//           authorize={authorize}
+//           authorizeError={authorizeError}
+//         />
+//       )
+//     }
+//   </AuthConsumer>
+// </Layout>
+// </AuthProvider>

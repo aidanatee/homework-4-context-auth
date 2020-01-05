@@ -1,11 +1,60 @@
 import React, { PureComponent } from 'react';
 
+//declare provider and consumer
 const { Provider, Consumer: AuthConsumer } = React.createContext('');
 
+//class AuthProvider provides the state of the app, 
+//as well as some functions for manipulating that state to all consumers
+
 class AuthProvider extends PureComponent {
+  //initial state
+  state = {
+    email: '', 
+    authorizeError: '', 
+    isAuthorized: false
+  }
+
+  //methods 
+  authorize = (email, password) => {
+    if (email === 'stu@dent.com' && password === '123') {
+      this.setState({
+        email: email,
+        isAuthorized: true,
+        authorizeError: ''
+      })
+    } else {
+      this.setState({
+        authorizeError: 'Email или пароль введён не верно',
+        isAuthorized: false
+      })
+    }
+  }
+
+  logout = () => {
+    this.setState({
+      isAuthorized: false
+    })
+  }
+
+  getProviderValue = () => {
+    const {email, isAuthorized, authorizeError} = this.state;
+    const values = {
+      email,
+      isAuthorized,
+      authorizeError,
+      authorize: this.authorize,
+      logout: this.logout
+    }
+    return values
+  }
+
   render() {
+
+    console.log(`isAuthorized: ${this.state.isAuthorized}`)
     const { children } = this.props;
-    return <Provider>{children}</Provider>;
+      return  <Provider value = {this.getProviderValue() }>
+        {children}
+      </Provider>
   }
 }
 
